@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <script type="module" src="/main.js"></script>
+    <h2 class="left-align">Get started with interactive live streaming</h2>
+    <div class="row">
+        <div>
+          <div>
+            <label for="token">Token</label><br>
+            <input type="text" id="token" name="token" style="width:300px; height: 36px; font-size: 18px;">
+          </div>
+          <div style="font-size: 18px; display:flex; align-items: center;">
+            <input type="radio" id="host" name="joinAs" value="host" >
+            <label for="host">Host</label><br>&emsp;
+            <input type="radio" id="Audience" name="joinAs" value="audience">
+            <label for="Audience">Audience</label><br>
+          </div>
+            <button type="button" id="join" style="padding:0 20px; height: 36px; font-size: 18px;">Join</button>
+            <button type="button" id="leave" style="padding: 0 20px; height: 36px; font-size: 18px;">Leave</button>
+        </div>
+        <!-- <div style="margin-top: 10px;">
+          <label for="opt-mode">Optimization mode</label>
+          <select id="opt-mode" style="font-size: 18px; height: 36px; padding: 0 20px;"> 
+            <option key="balanced" value="balanced">Balanced</option>
+            <option key="detail" value="detail">Detail</option>
+            <option key="motion" value="motion">Motion</option>
+          </select>
+        </div> -->
+    </div>
+  </body>
+</html>
