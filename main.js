@@ -32,10 +32,11 @@ let channelParameters =
 
 let isHighRemoteVideoQuality = false;
 let mixPanelTimer = null
+let agoraEngine
 
 async function startBasicCall() {
   // Create an instance of the Agora Engine
-  const agoraEngine = AgoraRTC.createClient({ mode: "live", codec: "vp9" });
+  agoraEngine = AgoraRTC.createClient({ mode: "live", codec: "vp9" });
   // Dynamically create a container in the form of a DIV element to play the remote video track.
   const remotePlayerContainer = document.createElement("div");
   // Dynamically create a container in the form of a DIV element to play the local video track.
@@ -211,26 +212,26 @@ function sendDataToMixPanel (){
   }
   mixPanelTimer=setInterval(() => {
 
-    let localAudioStats = client.getLocalAudioStats();
-    let localVideoStats = client.getLocalVideoStats();
-    let remoteAudioStats = client.getLocalVideoStats();
-    let remoteVideoStats = client.getRemoteVideoStats();
+    let localAudioStats = agoraEngine.getLocalAudioStats();
+    let localVideoStats = agoraEngine.getLocalVideoStats();
+    let remoteAudioStats = agoraEngine.getLocalVideoStats();
+    let remoteVideoStats = agoraEngine.getRemoteVideoStats();
     sendEvent('HOST_AUDIO_STATS', {...localAudioStats, user: options.uid});
     sendEvent('HOST_VIDEO_STATS', {...localVideoStats, user: options.uid});
-    sendEvent('HOST_AV_STATS', {...client.getRTCStats(), user: options.uid, netowrk: client.getRemoteNetworkQuality()});
+    sendEvent('HOST_AV_STATS', {...agoraEngine.getRTCStats(), user: options.uid, netowrk: agoraEngine.getRemoteNetworkQuality()});
     // sendEvent('remote video stats', remoteVideoStats);
     // sendEvent('remote audio stats', remoteAudioStats);
-    client.on("exception", function(evt) {
+    agoraEngine.on("exception", function(evt) {
       sendEvent('EXCEPTION', {code: evt.code, msg: evt.msg, uid: evt.uid})
       // console.log(evt.code, evt.msg, evt.uid);
     })
 
     sendEvent('HOST_AUDIO_STATS', {...localAudioStats, user: options.uid});
     sendEvent('HOST_VIDEO_STATS', {...localVideoStats, user: options.uid});
-    sendEvent('HOST_AV_STATS', {...client.getRTCStats(), user: options.uid, netowrk: client.getRemoteNetworkQuality()});
+    sendEvent('HOST_AV_STATS', {...agoraEngine.getRTCStats(), user: options.uid, netowrk: agoraEngine.getRemoteNetworkQuality()});
     // sendEvent('remote video stats', remoteVideoStats);
     // sendEvent('remote audio stats', remoteAudioStats);
-    client.on("exception", function(evt) {
+    agoraEngine.on("exception", function(evt) {
       sendEvent('EXCEPTION', {code: evt.code, msg: evt.msg, uid: evt.uid})
       // console.log(evt.code, evt.msg, evt.uid);
     })
