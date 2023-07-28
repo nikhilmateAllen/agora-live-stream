@@ -93,6 +93,8 @@ async function startBasicCall() {
     var urlParams = new URL(location.href).searchParams;
     options.token = urlParams.get("token");
     document.getElementById('token').value = options.token
+    document.getElementById('opt-mode').value = options.optimizationMode
+
     // Listen to the Join button click event.
     document.getElementById("join").onclick = async function () {
 
