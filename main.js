@@ -117,7 +117,7 @@ async function startBasicCall() {
           width: 640,
           // Specify a value range and an ideal value
           height: { ideal: 480, min: 400, max: 500 },
-          frameRate: 15,
+          frameRate: 5,
           bitrateMin: 600,
           bitrateMax: 1000,
           optimizationMode: options.optimizationMode || 'detail'
