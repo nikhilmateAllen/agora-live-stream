@@ -32,11 +32,9 @@ let channelParameters =
 
 let isHighRemoteVideoQuality = false;
 let mixPanelTimer = null
-let agoraEngine
+const agoraEngine = AgoraRTC.createClient({ mode: "live", codec: "vp9" });
 
 async function startBasicCall() {
-  // Create an instance of the Agora Engine
-  agoraEngine = AgoraRTC.createClient({ mode: "live", codec: "vp9" });
   // Dynamically create a container in the form of a DIV element to play the remote video track.
   const remotePlayerContainer = document.createElement("div");
   // Dynamically create a container in the form of a DIV element to play the local video track.
