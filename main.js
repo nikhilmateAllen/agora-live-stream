@@ -97,6 +97,7 @@ async function startBasicCall() {
     // Listen to the Join button click event.
     document.getElementById("join").onclick = async function () {
 
+      agoraEngine.enableDualStream();
       if (options.role == '') {
         window.alert("Select a user role first!");
         return;
