@@ -106,6 +106,8 @@ async function startBasicCall() {
       url.searchParams.set('token', options.token);
       history.pushState({}, "", url);
 
+      agoraEngine.enableDualStream();
+
       // Join a channel.
       await agoraEngine.join(options.appId, options.channel, options.token, options.uid);
       sendDataToMixPanel()
